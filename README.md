@@ -36,25 +36,51 @@ Este repositório é ideal para qualquer projeto que necessite extrair texto est
    cd pre-process-pipeline
    ```
 
-2. **Crie e ative um ambiente virtual (recomendado)**
+2. **Configure o ambiente virtual e instale as dependências**
+
+   Você pode escolher entre dois métodos para configurar seu ambiente:
+
+   #### Método 1: Usando virtualenv tradicional (venv)
 
    ```bash
    # No Windows
    python -m venv venv
    venv\Scripts\activate
+   pip install -e .
 
    # No Linux/macOS
    python -m venv venv
    source venv/bin/activate
-   ```
-
-3. **Instale as dependências**
-
-   ```bash
    pip install -e .
    ```
 
-   Isso instalará todas as dependências listadas no arquivo `pyproject.toml`, incluindo:
+   #### Método 2: Usando UV (mais rápido)
+
+   O [UV](https://github.com/astral-sh/uv) é uma alternativa moderna e mais rápida para gerenciamento de ambientes Python, escrita em Rust.
+
+   ```bash
+   # Instale o UV, se ainda não tiver instalado
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+
+   # No Windows (PowerShell)
+   # Baixe e instale UV a partir de https://github.com/astral-sh/uv/releases
+
+   # Crie o ambiente virtual e instale as dependências em um único comando
+   uv venv
+   
+   # Ative o ambiente (Windows)
+   .venv\Scripts\activate
+   
+   # Ative o ambiente (Linux/macOS)
+   source .venv/bin/activate
+   
+   # Instale as dependências
+   uv pip install -e .
+   ```
+
+   Com UV, a instalação das dependências será significativamente mais rápida que com pip tradicional.
+
+   Ambos os métodos instalarão todas as dependências listadas no arquivo `pyproject.toml`, incluindo:
    - PyMuPDF (fitz)
    - PaddleOCR e suas dependências
    - Label Studio
@@ -165,3 +191,10 @@ Para visualizar e editar os resultados do OCR, você pode usar o script `start_s
 ## Conclusão
 
 Este pipeline oferece uma solução completa para processamento de PDFs com OCR e revisão dos resultados. Com a integração do Label Studio, você pode facilmente corrigir erros do OCR e exportar os resultados para uso em aplicações subsequentes.
+
+Os datasets gerados são particularmente valiosos para:
+- Treinar modelos personalizados de reconhecimento de layout de documentos
+- Desenvolver sistemas de extração de informação específicos para seus tipos de documentos
+- Criar datasets de referência para avaliar e comparar diferentes modelos de OCR e extração de texto
+
+Ao combinar a automação do processo de OCR com ferramentas intuitivas para revisão manual, este pipeline reduz significativamente o tempo e esforço necessários para construir datasets de alta qualidade para tarefas de processamento de documentos.
