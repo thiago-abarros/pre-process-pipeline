@@ -21,7 +21,7 @@ Dependencies:
     - numpy
 """
 
-import fitz
+import pymupdf as fitz
 import os
 import sys
 import json
