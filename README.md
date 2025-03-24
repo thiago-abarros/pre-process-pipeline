@@ -32,7 +32,7 @@ Este repositório é ideal para qualquer projeto que necessite extrair texto est
 1. **Clone o repositório**
 
    ```bash
-   git clone https://github.com/yourusername/pre-process-pipeline.git
+   git clone https://github.com/thiago-abarros/pre-process-pipeline.git
    cd pre-process-pipeline
    ```
 
